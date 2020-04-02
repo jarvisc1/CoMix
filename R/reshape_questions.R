@@ -4,13 +4,10 @@
 #' and reshape and returns multiple objects with the prefix table
 #' which relate to different questions asked in the survey
 #'
-#'
 #' @param df data.table object  Path to the input file
 #' @param export_var_names Whether to export the variable names into a seperate file
-#' @return Multiple data.table object named as different tables each table refers to
-#' a set of questions asked in the survey
+#' @return Multiple data.table object named as different tables each table refers to a set of questions asked in the survey
 #'
-#' @export
 
 
 reshape_questions <- function(df, export_var_names = FALSE){

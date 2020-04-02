@@ -12,8 +12,21 @@ reshape_questions(df, export_var_names = FALSE)
 \item{export_var_names}{Whether to export the variable names into a seperate file}
 }
 \value{
-Multiple data.table object named as different tables each table refers to
-a set of questions asked in the survey
+Multiple data.table object named as different tables each table refers to a set of questions asked in the survey
+
+variable is the name of the variable in the current dataset
+
+ipsos_varname is the name ipsos initially named this variable
+ some ipsos_varnames has rows embedded in them, these are now removed, and all duplicate values
+ are removed as well. Only the first old varname remains
+
+type states the type of variable. Type single_variable is a variable that is found in the main dataset (df),
+ and has only a single record per participant and wave
+ Type table_variable is a variable that is embedded in a table, usually because there can be more than one record
+ per respondent and wave (i.e. householdmembers, contactpersons, etc)
+ Type table is a record for a table in which table_variables are stored. these do not have a direct variable associated with them.
+
+tablename gives the name of the table where the variable can be found
 }
 \description{
 This function take the survey data.table format that is from the spss file

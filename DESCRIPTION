@@ -1,12 +1,12 @@
 Package: CoMix
-Title: What the Package Does (One Line, Title Case)
+Title: Functions for running the CoMix analyses
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Christopher",
+           family = "Jarvis",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "christopher.jarvis@lshtm.ac.uk",
+           comment = c(ORCID = "0000-0002-0812-2446"))
 Description: What the package does (one paragraph).
 License: What license it uses
 Encoding: UTF-8
