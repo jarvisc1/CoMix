@@ -95,7 +95,7 @@ create_cm <- function(
     filter_text$part_covid_contact <-  part_covid_contact
   }
 
-  x <- contact_matrix(
+  x <- socialmixr::contact_matrix(
     survey,
     countries = country,
     age.limits = age_limits,
