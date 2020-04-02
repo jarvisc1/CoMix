@@ -11,4 +11,6 @@ Description: What the package does (one paragraph).
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
+Depends: data.table (>= 1.12.8),
+         socialmixr (>= 0.1.6)
 RoxygenNote: 7.1.0
