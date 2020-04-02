@@ -81,9 +81,9 @@ scale_factor <- function(mat1, mat2, split1 = FALSE, split2 = FALSE, ... ){
     x1 <- mat1
   }
   if (split2){
-    x2 <- split_cm(mat1, ...)
+    x2 <- split_cm(mat2, ...)
   } else{
-    x2 <- mat1
+    x2 <- mat2
   }
 
   x1 <- symm_mat(x1)
