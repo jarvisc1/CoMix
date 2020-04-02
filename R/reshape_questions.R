@@ -34,7 +34,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
   )
 
   ## Sort the data by wave and then Id
-  setorder(df, qcountry, wave, respondent_id)
+  data.table::setorder(df, qcountry, wave, respondent_id)
 
   ## Trim white space in values
   df[, value := trimws(value)]
@@ -54,7 +54,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
   ## data table
   questions_loop <- rbindlist(
     lapply(questions_lists,
-           function(x){ as.data.table(t(c(paste0(x,collapse="_"),x))) }
+           function(x){ data.table::as.data.table(t(c(paste0(x,collapse="_"),x))) }
     ),
     fill=TRUE
   )
@@ -78,7 +78,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
     current_q <- questions_loop[V2 == q]
 
     ## Merge on dataframe information for q
-    current_q <- merge(current_q, df, by.x="V1", by.y="variable")
+    current_q <- data.table::merge(current_q, df, by.x="V1", by.y="variable")
 
     ## Remove empty rows
     current_q <- current_q[!is.na(value)]
@@ -86,7 +86,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
     ## Re-create table to be wide structure instead of very long
     if(nrow(current_q) > 0){
       ## Reshape to wide x ~ y where x will be rows, y columns
-      current_q <- dcast(
+      current_q <- data.table::dcast(
         current_q,
         qcountry+respondent_id+wave+V4 ~ V5+V6+V7+V8,
         value.var="value"
@@ -94,7 +94,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
 
       ## Order table by respondent_id wave and the row (V4)
       class(current_q$V4) <- "integer"
-      setorder(current_q, qcountry, respondent_id, wave, V4)
+      data.table::setorder(current_q, qcountry, respondent_id, wave, V4)
       colnames(current_q)[which(colnames(current_q) == "V4")] <- "table_row"
 
       ## Remove NA's in column names
@@ -127,7 +127,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
   ## data table
   questions_scale <- rbindlist(
     lapply(questions_lists,
-           function(x){ as.data.table(t(c(paste0(x,collapse="_"),x))) }
+           function(x){ data.table::as.data.table(t(c(paste0(x,collapse="_"),x))) }
     ),
     fill=TRUE
   )
@@ -141,7 +141,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
 
     current_q <- questions_scale[V2 == q]
 
-    current_q <- merge(current_q, df, by.x="V1", by.y="variable")
+    current_q <- data.table::merge(current_q, df, by.x="V1", by.y="variable")
 
     ## Remove empty rows
     current_q <- current_q[!is.na(value)]
@@ -149,7 +149,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
     ## Re-create table
     if(nrow(current_q) > 0){
       #current_q <- dcast(current_q, qcountry+respondent_id+wave+V3 ~ V2+V5, value.var="value")
-      current_q <- dcast(current_q, qcountry+respondent_id+wave+V4 ~ V5+V6+V7, value.var="value")
+      current_q <- data.table::dcast(current_q, qcountry+respondent_id+wave+V4 ~ V5+V6+V7, value.var="value")
 
       ## Order table in correct rows
       class(current_q$V3) <- "integer"
@@ -190,7 +190,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
 
     df_codes[!variable %in% c(questions_loop$V1, questions_scale$V1), type := "single_variable"]
 
-    df_codes <- merge(df_codes[respondent_id==1],
+    df_codes <- data.table::merge(df_codes[respondent_id==1],
                       questions_update,
                       by.x="variable",
                       by.y="V1",
@@ -214,7 +214,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
     df_codes_unique <- rbindlist(
       list(
         df_codes_unique,
-        data.table(
+        data.table::data.table(
           variable=unique(df_codes_unique[type == "table_variable", tablename]),
           ipsos_varname=rep(NA, length(unique(df_codes_unique[type == "table_variable", tablename]))),
           type=rep("table", length(unique(df_codes_unique[type == "table_variable", tablename]))),
@@ -236,7 +236,7 @@ reshape_questions <- function(df, export_var_names = FALSE){
     #'  Type table is a record for a table in which table_variables are stored. these do not have a direct variable associated with them.
     #'
     #' tablename gives the name of the table where the variable can be found
-    fwrite(df_codes_unique, "~/workspace/contact_survey_2020/data/df_codes_cleaning.csv")
+    data.table::fwrite(df_codes_unique, "~/workspace/contact_survey_2020/data/df_codes_cleaning.csv")
   }
 
 }
