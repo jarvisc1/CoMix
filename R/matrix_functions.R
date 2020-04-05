@@ -113,7 +113,6 @@ scale_matrix <- function(scale_matrix, missing_matrix, i = 0, ...){
     scale_matrix <- scale_matrix[[i]]$matrix
     missing_matrix <- missing_matrix[[i]]$matrix
     full_matrix <- scale_matrix
-    mat[[i]]$matrix[row,col]
   }
 
 
