@@ -90,3 +90,45 @@ scale_factor <- function(mat1, mat2, split1 = FALSE, split2 = FALSE, ... ){
   x2 <- symm_mat(x2)
   max_eigen_ratio(x1, x2)
 }
+
+
+#'  Scale by matrix by eigenvalue ratio
+#'
+#' Take two matrices split them if required to be of the same size and square
+#' Then take the ratio of the maximum eigenvalues
+#'
+#' @param scale_matrix Full matrix which which is used for Matrix
+#' @param missing_matrix Matrix with missing value that need imputing
+#' @param split1 whether to split the first matrix
+#' @param split2 whether to split the second matrix
+#'
+#' @export
+#'
+
+
+scale_matrix <- function(scale_matrix, missing_matrix, i = 0, ...){
+  if(i == 0 ){
+    full_matrix <- scale_matrix
+  } else {
+    scale_matrix <- scale_matrix[[i]]$matrix
+    missing_matrix <- missing_matrix[[i]]$matrix
+    full_matrix <- scale_matrix
+    mat[[i]]$matrix[row,col]
+  }
+
+
+  fullmat * scale_factor(scale_matrix, missing_matrix, i = 0, ...)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

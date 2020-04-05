@@ -3,5 +3,6 @@
 export(create_cm)
 export(max_eigen_ratio)
 export(scale_factor)
+export(scale_matrix)
 export(split_cm)
 export(symm_mat)
