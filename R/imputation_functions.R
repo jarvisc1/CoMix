@@ -76,7 +76,7 @@ scale_matrix <- function(fullmat, mat1, mat2, i = 1, ...){
 ### Final function which calcualte the scaling factors for R.
 
 scale_factor_R <- function(mat1, mat2, i = 1, ...){
-
+  # browser()
   x1 <- update_cm(mat1, mat2, i = i, ...)
   x2 <- mat2[[i]]$matrix
   x1 <- symm_mat(x1)
@@ -119,11 +119,17 @@ update_cm <- function(
 
 scale_factor_single <- function(mat1, mat2, ... ){
   x1 <- split_cm_single(mat1, ...)
+  # browser()
   x2 <- split_cm_single(mat2, ...)
   x1 <- symm_mat(x1)
   x2 <- symm_mat(x2)
   max_eigen_ratio(x1, x2)
 }
+
+split_cm_single <- function(mat, i = 1, row = 3:8, col = 3:8, ...){
+  mat[row,col]
+}
+
 
 # Take a full matrix and scale it based on ratio of mat1 and mat2
 scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
@@ -199,4 +205,10 @@ impute_values <- function(i = 1, school = FALSE, ...){
   }
   return(imputed_values)
 
+}
+
+
+scale_list <- function(mat_list, row = 2, col = 2, scale = 0.5) {
+  mat_list$matrix[row, col] <- mat_list$matrix[row, col]*scale
+  mat_list
 }

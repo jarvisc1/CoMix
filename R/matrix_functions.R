@@ -11,12 +11,20 @@
 #'
 #' @export
 #
-split_cm <- function(mat, i = FALSE, row = 3:8, col = 3:8, ...){
-
+split_cm <- function(mat, i = 1, row = 3:8, col = 3:8, ...){
+  # browser()
+  # if (isFALSE(i)) {
+  #   mat[row,col]
+  # } else {
     mat[[i]]$matrix[row,col]
+  # }
+}
+scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
+  mat1 <- mat1
+
+  fullmat * scale_factor_single(mat1, mat2, i = i, ...)
 
 }
-
 
 #' Makes a square matrix symmetric
 #'

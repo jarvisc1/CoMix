@@ -96,5 +96,14 @@ gg_matrix <- function(dt, breaks = c(0,0.5, 1), age_lab = FALSE) {
 }
 
 
+## For plots
+age_labs <- c("0-4",
+              "5-17",
+              "18-29",
+              "30-39",
+              "40-49",
+              "50-59",
+              "60-69",
+              "70+")
 
 

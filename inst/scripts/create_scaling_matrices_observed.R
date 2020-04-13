@@ -1,6 +1,6 @@
-
-nboots <- 1
-file_name <- "comix_cms.RData"
+#
+# nboots <- 1
+# file_name <- "comix_cms.RData"
 
 ## We do not have data on participants below 18 so need to have lower limit
 ## Of 18 to do the inputed and have a symmetric matrix
@@ -33,7 +33,7 @@ age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
 polymod_cm_school <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                                symmetric = TRUE, boots = nboots,
                                filter_text = list(cnt_school = 1))
-polymod_cm_school <- cm_filter(survey = polymod_survey, age_limits = age_limits,
+polymod_cm_home <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                                symmetric = TRUE, boots = nboots,
                                filter_text = list(cnt_home = 1))
 polymod_cm_work <- cm_filter(survey = polymod_survey, age_limits = age_limits,
@@ -57,5 +57,11 @@ save(
   polymod_cm_other,
   file = paste0(here::here("inst/data/contact_matrices/", file_name)))
 
-saveRDS(comix_cm, file = "inst/data/contact_matrices/comix_cm.rds")
-saveRDS(polymod_cm, file = "inst/data/contact_matrices/polymod_cm.rds")
+if (nboots == 1) {
+
+}
+
+rm(nboots)
+rm(file_name)
+remove(list = ls()[(grepl("comix_cm", ls()))])
+remove(list = ls()[(grepl("polymod_cm", ls()))])
