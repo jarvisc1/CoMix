@@ -32,7 +32,7 @@ cm_dt$contact_age
 ## Create the plot
 matrix_plot <- gg_matrix(
   cm_dt,
-  breaks = c(0, 2,4,6, 8),
+  breaks = c(0, 2, 4, 6, 8),
   age_lab = age_labs
 ) +
   ggtitle("A")
@@ -182,7 +182,7 @@ avg_contacts_plot <- ggplot(comb_avg,
     labels = c("0-17", age_labs[c(-1,-2)])
   ) +
   scale_y_continuous(
-    breaks = seq(2,12,2)
+    breaks = seq(2, round(max(comb_avg$mean_age)), 2)
   ) +
   scale_linetype_manual(
     values = 1:2,
@@ -229,11 +229,11 @@ part <- readRDS('inst/data/clean_participants.rds')
 contacts <- readRDS('inst/data/clean_contacts.rds')
 
 
-# mean(contacts[ ,  .N , by = .(part_id, wave)]$N)
-# max(contacts[ ,  .N , by = .(part_id, wave)]$N)
-# sd(contacts[ ,  .N , by = .(part_id, wave)]$N)
 
 
+mean(part$n_contacts)
+max(part$n_contacts)
+sd(part$n_contacts)
 
 
 ## C change in R plot
@@ -275,23 +275,5 @@ r_plot
 x1 <- (matrix_plot / r_plot )
 x1
 
-ggsave(filename = "outputs/figure1-panelb.png", x1, width = 6, height = 6.5)
-
-
-changes_inR2 <- melt(changes_inR, var.ids = c("type", "eigens"),
-                     measure.vars = c("previousR", "newR"),
-                     value.name = "R", variable.name = "Rtype")
-polymod_avg_all[ , .(median = median(R),
-                  mean = mean(R),
-                  low = quantile(R, 0.025),
-                  low = quantile(R, 0.975)
-)  , by = c("type", "Rtype")]
-
-
-# Find a better way to plot
-# ggplot(changes_inR2, aes(x = factor(type), y = R,
-#                          fill = Rtype, color = Rtype,)) +
-#   geom_point()
-
-
+ggsave(filename = "inst/outputs/figure1-panelb.png", x1, width = 6, height = 6.5)
 
