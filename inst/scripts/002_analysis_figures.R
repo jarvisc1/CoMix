@@ -10,10 +10,10 @@ ggthemr("fresh")
 source('R/ggplot_functions.R')
 # source('r/functions/utility_functions.R')
 
-h2020_cm <- readRDS('inst/data/contact_matrices/comix_cm.rds')
+h2020_cm <- readRDS(file.path(matrices_path, "comix_cm.rds"))
 # h2020_cm <- h2020_cm[[1]]$matrix
-h2020_cm_imputed <- readRDS('inst/data/contact_matrices/comix_cm_imputed.rds')
-polymod_cm <- readRDS('inst/data/contact_matrices/polymod_cm.rds')
+h2020_cm_imputed <- readRDS(file.path(matrices_path, "comix_cm_imputed.rds"))
+polymod_cm <- readRDS(file.path(matrices_path, "polymod_cm.rds"))
 
 
 rowSums(polymod_cm)/rowSums(h2020_cm)
@@ -44,8 +44,9 @@ matrix_plot
 ## Frequency of contacts
 
 
-part <- readRDS('inst/data/clean_participants.rds')
-polymod_part <- readRDS('inst/data/polymod_participants.rds')
+part <- readRDS(file.path(data_path, "clean_participants.rds"))
+polymod_part <- readRDS(
+  file.path(base_data_directory , "polymod_participants.rds"))
 
 class(part$part_age_group)
 class(polymod_part$part_age_group)
@@ -79,7 +80,7 @@ age_compare_plot <- ggplot(comb_agef) +
   scale_fill_manual(
     values=c("#0D5257","#A7A8AA")
   ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 10L))+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 10L)) +
   coord_flip() +
   ggtitle("B") +
   geom_hline(yintercept = seq(0.,0.5, 0.05), col = "white") +
@@ -95,8 +96,9 @@ age_compare_plot
 
 ## Number of contacts by age
 
-contacts_part <- readRDS('inst/data/clean_contacts_part.rds')
-polymod_contacts_part <- readRDS('inst/data/polymod_contacts_part.rds')
+contacts_part <- readRDS(file.path(data_path, "clean_contacts_part.rds"))
+polymod_contacts_part <- readRDS(
+  file.path(base_data_directory, "polymod_contacts_part.rds"))
 
 
 h2020_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),
@@ -225,8 +227,8 @@ avg_contacts_plot <- ggplot(comb_avg,
 
 avg_contacts_plot
 
-part <- readRDS('inst/data/clean_participants.rds')
-contacts <- readRDS('inst/data/clean_contacts.rds')
+part <- readRDS(file.path(data_path, "clean_participants.rds"))
+contacts <- readRDS(file.path(data_path, "clean_contacts.rds"))
 
 
 
@@ -238,7 +240,7 @@ sd(part$n_contacts)
 
 ## C change in R plot
 
-changes_inR <-  readRDS("inst/data/contact_matrices/rds_eigen.rds")
+changes_inR <-  readRDS(file.path(matrices_path, "rds_eigen.rds"))
 
 
 changes_inR <- changes_inR[type %in% c("All", "Physical"), ]
@@ -275,5 +277,6 @@ r_plot
 x1 <- (matrix_plot / r_plot )
 x1
 
-ggsave(filename = "inst/outputs/figure1-panelb.png", x1, width = 6, height = 6.5)
+ggsave(filename = file.path(outputs_path, "figure1-panelb.png"),
+       x1, width = 6, height = 6.5)
 

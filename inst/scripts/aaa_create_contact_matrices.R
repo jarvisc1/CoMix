@@ -13,11 +13,11 @@ source(here::here("R/imputation_functions.R"))
 
 
 ## Requires participants and contacts data
-part <- readRDS(here::here("inst", "data", "clean_participants.rds"))
+part <- readRDS(file.path(data_path, "clean_participants.rds"))
 table(part$date, useNA = "always")
 table(part$panel, useNA = "always")
 table(part$wave)
-contacts <- readRDS(here::here("inst", "data", "clean_contacts.rds"))
+contacts <- readRDS(file.path(data_path, "clean_contacts.rds"))
 table(contacts$date, useNA = "always")
 table(contacts$panel, useNA = "always")
 table(contacts$wave)
@@ -47,11 +47,12 @@ contacts_m <- contacts[, .(
 ]
 
 part_m <- part[, .(
+  date,
+  country,
   part_id,
   part_gender,
   part_age,
-  date,
-  country,
+  part_pregnant,
   part_isolate,
   part_quarantine,
   part_limit_work,
@@ -70,12 +71,10 @@ polymod_cm <- create_cm(polymod_survey)
 
 
 ## Save the survey and contact matrix objects
-saveRDS(comix_survey, file = here::here("inst", "data", "contact_matrices",
-                                        "comix_survey.rds"))
-saveRDS(comix_survey, file = here::here("inst", "data", "contact_matrices",
-                                        "polymod_survey.rds"))
-saveRDS(comix_cm, file = "inst/data/contact_matrices/comix_cm.rds")
-saveRDS(polymod_cm, file = "inst/data/contact_matrices/polymod_cm.rds")
+saveRDS(comix_survey, file = file.path(matrices_path, "comix_survey.rds"))
+saveRDS(comix_survey, file = file.path(matrices_path, "polymod_survey.rds"))
+saveRDS(comix_cm, file = file.path(matrices_path, "comix_cm.rds"))
+saveRDS(polymod_cm, file = file.path(matrices_path,"polymod_cm.rds"))
 
 # source(here::here("R/matrix_functions.R"))
 
@@ -94,13 +93,15 @@ source(here::here("inst/scripts/create_scaling_matrices_phys.R"))
 
 ## STEP 3: Set up SYMMETRICAL OBSERVED matrices - bootstrapped
 # Create contact matrices for each survey and contact location
-nboots <- 2000
+nboots <- 5000
+if(TEST) nboots <- 200
 file_name <- "boots_cms.RData"
 source(here::here("inst/scripts/create_scaling_matrices.R"))
 
 ## STEP 4: Set up PHYSICAL CONTACT matrices - bootstrapped
 # Create contact matrices for each survey and contact location
-nboots <- 2000
+nboots <- 5000
+if(TEST) nboots <- 200
 file_name <- "boots_phys_cms.RData"
 source(here::here("inst/scripts/create_scaling_matrices_phys.R"))
 

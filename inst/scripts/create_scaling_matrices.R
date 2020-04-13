@@ -1,11 +1,6 @@
 
-# nboots <- 5000
-# if(TEST) nboots <- 100
-# file_name <- "boots_cms.RData"
-
 ## We do not have data on participants below 18 so need to have lower limit
 ## Of 18 to do the inputed and have a symmetric matrix
-
 comix_cm <- cm_filter(comix_survey, symmetric = FALSE, boots = nboots)
 polymod_cm <- cm_filter(polymod_survey, symmetric = TRUE, boots = nboots)
 
@@ -59,9 +54,10 @@ save(
     polymod_cm_home,
     polymod_cm_work,
     polymod_cm_other,
-    file = paste0(here::here("inst/data/contact_matrices/", file_name)))
+    file = file.path(matrices_path, file_name))
 
 
+# Remove variables from the enviroment to reduce chance of errors
 rm(nboots)
 rm(file_name)
 remove(list = ls()[(grepl("comix_cm", ls()))])

@@ -16,14 +16,19 @@ comix_cm_imputed <- scale_matrix_single(polymod_cm, comix_cm, polymod_cm)
 
 image(comix_cm_imputed)
 
-saveRDS(comix_cm_imputed, file = 'inst/data/contact_matrices/comix_cm_imputed.rds')
+saveRDS(comix_cm_imputed,
+        file = file.path(matrices_path, "comix_cm_imputed.rds"))
 
 
 
-write.csv(comix_cm_home, "inst/outputs/contact_matrices_online/comix_contact_matrix_home.csv")
-write.csv(comix_cm_work, "inst/outputs/contact_matrices_online/CoMix_contact_matrix_work.csv")
-write.csv(comix_cm_school, "inst/outputs/contact_matrices_online/CoMix_contact_matrix_school.csv")
-write.csv(comix_cm_other, "inst/outputs/contact_matrices_online/CoMix_contact_matrix_other.csv")
+write.csv(comix_cm_home,
+          file.path(online_matrices_path, "comix_contact_matrix_home.csv"))
+write.csv(comix_cm_work,
+          file.path(online_matrices_path, "CoMix_contact_matrix_work.csv"))
+write.csv(comix_cm_school,
+          file.path(online_matrices_path, "CoMix_contact_matrix_school.csv"))
+write.csv(comix_cm_other,
+          file.path(online_matrices_path, "CoMix_contact_matrix_other.csv"))
 
 remove(list = ls()[(grepl("comix_cm_", ls()))])
 remove(list = ls()[(grepl("polymod_cm_", ls()))])

@@ -3,7 +3,7 @@ source(here::here("R/matrix_functions.R"))
 source(here::here("R/imputation_functions.R"))
 
 
-load("inst/data/contact_matrices/boots_cms.RData")
+load(file.path(matrices_path, "boots_cms.RData"))
 
 boots <- length(comix_cm)
 eigen_scale <- numeric(boots)
@@ -14,7 +14,7 @@ for (i in 1:boots){
 
 }
 
-saveRDS(eigen_scale, file = here::here("inst/data/contact_matrices/eigen_all.rds"))
+saveRDS(eigen_scale, file = file.path(matrices_path, "eigen_all.rds"))
 
 
 
@@ -23,7 +23,7 @@ remove(list = ls()[(grepl("comix_cm_", ls()))])
 remove(list = ls()[(grepl("polymod_cm_", ls()))])
 
 
-load(here::here("inst/data/contact_matrices/boots_phys_cms.RData"))
+load(file.path(matrices_path, "boots_phys_cms.RData"))
 boots <- length(comix_cm)
 eigen_scale_phys <- numeric(boots)
 
@@ -36,7 +36,7 @@ for (i in 1:boots){
 }
 
 saveRDS(eigen_scale_phys,
-        file = here::here("inst/data/contact_matrices/eigen_physical.rds"))
+        file = file.path(matrices_path, "eigen_physical.rds"))
 
 remove(list = ls()[(grepl("comix_cm_", ls()))])
 remove(list = ls()[(grepl("polymod_cm_", ls()))])
@@ -46,7 +46,7 @@ remove(list = ls()[(grepl("polymod_cm_", ls()))])
 ### Reduce contacts for 5-18 by 50%
 
 ## Changed to scale all by 50%
-load('inst/data/contact_matrices/boots_cms.RData')
+load(file.path(matrices_path, "boots_cms.RData"))
 polymod_cm <- lapply(polymod_cm, scale_list)
 polymod_cm_home <- lapply(polymod_cm_home, scale_list)
 polymod_cm_work <- lapply(polymod_cm_work, scale_list)
@@ -62,7 +62,8 @@ for (i in 1:boots){
 
 }
 
-saveRDS(eigen_scale_scaled, file = "inst/data/contact_matrices/eigen_all_polymod_scaled.rds")
+saveRDS(eigen_scale_scaled,
+        file = file.path(matrices_path, "eigen_all_polymod_scaled.rds"))
 
 remove(list = ls()[(grepl("comix_cm", ls()))])
 remove(list = ls()[(grepl("polymod_cm", ls()))])
@@ -70,7 +71,7 @@ remove(list = ls()[(grepl("polymod_cm", ls()))])
 
 
 ## Repeat for physical
-load('inst/data/contact_matrices/boots_phys_cms.RData')
+load(file.path(matrices_path, "boots_phys_cms.RData"))
 
 polymod_cm <- lapply(polymod_cm, scale_list)
 polymod_cm_home <- lapply(polymod_cm_home, scale_list)
@@ -87,5 +88,6 @@ for (i in 1:boots){
   eigen_scale_phys_scaled[i] <- scale_factor_R(comix_cm, polymod_cm, i = i)
 }
 
-saveRDS(eigen_scale_phys_scaled, file = "inst/data/contact_matrices/eigen_physical_polymod_scaled.rds")
+saveRDS(eigen_scale_phys_scaled,
+        file = file.path(matrices_path, "eigen_physical_polymod_scaled.rds"))
 

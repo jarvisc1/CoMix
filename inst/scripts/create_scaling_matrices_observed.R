@@ -55,7 +55,7 @@ save(
   polymod_cm_home,
   polymod_cm_work,
   polymod_cm_other,
-  file = paste0(here::here("inst/data/contact_matrices/", file_name)))
+  file = file.path(matrices_path, file_name))
 
 if (nboots == 1) {
 

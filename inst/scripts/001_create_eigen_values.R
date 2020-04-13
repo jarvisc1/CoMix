@@ -1,7 +1,9 @@
-eigen_all <- readRDS('inst/data/contact_matrices/eigen_all.rds')
-eigen_phys <- readRDS('inst/data/contact_matrices/eigen_physical.rds')
-eigen_all_scaled <- readRDS('inst/data/contact_matrices/eigen_all_polymod_scaled.rds')
-eigen_phys_scaled <- readRDS('inst/data/contact_matrices/eigen_physical_polymod_scaled.rds')
+eigen_all <- readRDS(file.path(matrices_path, "eigen_all.rds"))
+eigen_phys <- readRDS(file.path(matrices_path, "eigen_physical.rds"))
+eigen_all_scaled <- readRDS(
+  file.path(matrices_path, "eigen_all_polymod_scaled.rds"))
+eigen_phys_scaled <- readRDS(
+  file.path(matrices_path, "eigen_physical_polymod_scaled.rds"))
 
 
 R_mean <- 2.68
@@ -17,7 +19,7 @@ previousR <- rnorm(nrow(eigen_df), mean = R_mean, sd = R_sd)
 
 eigen_df <- data.table(type, eigens, previousR, newR = eigens*previousR)
 
-saveRDS(eigen_df, file = "inst/data/contact_matrices/rds_eigen.rds")
+saveRDS(eigen_df, file = file.path(matrices_path, "rds_eigen.rds"))
 
 
 eigen_df[,.(
@@ -34,7 +36,7 @@ by = type
 ]
 
 
-changes_inR <-  readRDS("inst/data/contact_matrices/rds_eigen.rds")
+changes_inR <-  readRDS(file.path(matrices_path, "rds_eigen.rds"))
 
 max_all <-  1/max(eigen_all)
 max_phys <- 1/max(eigen_phys)
@@ -73,6 +75,9 @@ eigen_summary_table <- data.table(
 
 eigen_summary_table
 
+write.csv(eigen_summary_table,
+          file.path(outputs_path, "eigen_summary_table.csv"))
+
 ## Create R estimates table
 
 all_scaled_mean <- mean(rnorm(boots,
@@ -104,3 +109,7 @@ R_summary_table <- data.table(
 )
 
 R_summary_table
+
+
+write.csv(R_summary_table, file.path(outputs_path, "r_summary_table.csv"))
+

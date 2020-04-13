@@ -62,11 +62,11 @@ save(
   polymod_cm_home,
   polymod_cm_work,
   polymod_cm_other,
-  file = paste0(here::here("inst/data/contact_matrices/", file_name)))
+  file =  file.path(matrices_path, file_name))
 
 if (nboots == 1) {
-  saveRDS(comix_cm, file = "inst/data/contact_matrices/comix_cm_phys.rds")
-  saveRDS(polymod_cm, file = "inst/data/contact_matrices/polymod_cm_phys.rds")
+  saveRDS(comix_cm, file = file.path(matrices_path, "comix_cm_phys.rds"))
+  saveRDS(polymod_cm, file = file.path(matrices_path, "polymod_cm_phys.rds"))
 }
 
 rm(nboots)
