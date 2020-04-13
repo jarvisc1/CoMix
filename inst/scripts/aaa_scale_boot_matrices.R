@@ -64,8 +64,8 @@ for (i in 1:boots){
 
 saveRDS(eigen_scale_scaled, file = "inst/data/contact_matrices/eigen_all_polymod_scaled.rds")
 
-remove(list = ls()[(grepl("comix_cm_", ls()))])
-remove(list = ls()[(grepl("polymod_cm_", ls()))])
+remove(list = ls()[(grepl("comix_cm", ls()))])
+remove(list = ls()[(grepl("polymod_cm", ls()))])
 
 
 
@@ -85,7 +85,6 @@ eigen_scale_phys_scaled <- numeric(boots)
 for (i in 1:boots){
   ## Scaling for each matrix
   eigen_scale_phys_scaled[i] <- scale_factor_R(comix_cm, polymod_cm, i = i)
-
 }
 
 saveRDS(eigen_scale_phys_scaled, file = "inst/data/contact_matrices/eigen_physical_polymod_scaled.rds")

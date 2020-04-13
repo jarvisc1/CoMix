@@ -8,9 +8,9 @@
 ## Of 18 to do the inputed and have a symmetric matrix
 
 comix_cm <- cm_filter(comix_survey, symmetric = FALSE, boots = nboots,
-                      filter_text = list(phys_contacts = 1))
+                      filter_text = list(phys_contact = 1))
 polymod_cm <- cm_filter(polymod_survey, symmetric = TRUE, boots = nboots,
-                        filter_text = list(phys_contacts = 1))
+                        filter_text = list(phys_contact = 1))
 
 
 ## Create location specific contact matrices
@@ -18,19 +18,19 @@ polymod_cm <- cm_filter(polymod_survey, symmetric = TRUE, boots = nboots,
 age_limits_sym <- c(18, 30, 40, 50, 60, 70)
 comix_cm_school <- cm_filter(survey = comix_survey, age_limits = age_limits_sym,
                              symmetric = TRUE, boots = nboots,
-                             filter_text = list(phys_contacts = 1, cnt_school = "Yes"))
+                             filter_text = list(phys_contact = 1, cnt_school = "Yes"))
 
 comix_cm_home <- cm_filter(survey = comix_survey, age_limits = age_limits_sym,
                            symmetric = TRUE, boots = nboots,
-                           filter_text = list(phys_contacts = 1, cnt_home = "Yes"))
+                           filter_text = list(phys_contact = 1, cnt_home = "Yes"))
 
 comix_cm_work <- cm_filter(survey = comix_survey, age_limits = age_limits_sym,
                            symmetric = TRUE, boots = nboots,
-                           filter_text = list(phys_contacts = 1, cnt_work = "Yes"))
+                           filter_text = list(phys_contact = 1, cnt_work = "Yes"))
 
 comix_cm_other <- cm_filter(survey = comix_survey, age_limits = age_limits_sym,
                             symmetric = TRUE, boots = nboots,
-                            filter_text = list(phys_contacts = 1, cnt_work = "No",
+                            filter_text = list(phys_contact = 1, cnt_work = "No",
                                                cnt_school = "No", cnt_home = "No"))
 
 ## Repeat for Polymod
@@ -39,16 +39,16 @@ age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
 
 polymod_cm_school <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                                symmetric = TRUE, boots = nboots,
-                               filter_text = list(phys_contacts = 2, cnt_school = 1))
+                               filter_text = list(phys_contact = 2, cnt_school = 1))
 polymod_cm_home <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                              symmetric = TRUE, boots = nboots,
-                             filter_text = list(phys_contacts = 2, cnt_home = 1))
+                             filter_text = list(phys_contact = 2, cnt_home = 1))
 polymod_cm_work <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                              symmetric = TRUE, boots = nboots,
-                             filter_text = list(phys_contacts = 2, cnt_work = 1))
+                             filter_text = list(phys_contact = 2, cnt_work = 1))
 polymod_cm_other <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                               symmetric = TRUE, boots = nboots,
-                              filter_text = list(phys_contacts = 2, cnt_work = 0,
+                              filter_text = list(phys_contact = 2, cnt_work = 0,
                                                  cnt_school = 0, cnt_home = 0))
 
 save(
