@@ -1,5 +1,4 @@
 ## Setup contact matrix data
-TEST = TRUE
 
 library(socialmixr)
 library(data.table)
@@ -10,6 +9,9 @@ here::here()
 source(here::here("R/create_cm.R"))
 source(here::here("R/matrix_functions.R"))
 source(here::here("R/imputation_functions.R"))
+source(here::here("R/create_scaling_matrices.R"))
+source(here::here("R/create_scaling_matrices_phys.R"))
+source(here::here("R/create_scaling_matrices_observed.R"))
 
 
 ## Requires participants and contacts data
@@ -83,30 +85,32 @@ saveRDS(polymod_cm, file = file.path(matrices_path,"polymod_cm.rds"))
 # Create contact matrices for each survey and contact location - single
 nboots <- 1
 file_name <- "comix_cms.RData"
-source(here::here("inst/scripts/create_scaling_matrices_observed.R"))
+create_scaling_matrices_observed(comix_survey, polymod_survey, nboots,
+                        matrices_path, file_name)
 
 ## STEP 2: Set up PHYSICAL CONTACT matrices - single
 # Create contact matrices for each survey and contact location
 nboots <- 1
 file_name <- "comix_phys_cms.RData"
-source(here::here("inst/scripts/create_scaling_matrices_phys.R"))
+create_scaling_matrices(comix_survey, polymod_survey, nboots,
+                        matrices_path, file_name)
+
 
 ## STEP 3: Set up SYMMETRICAL OBSERVED matrices - bootstrapped
 # Create contact matrices for each survey and contact location
 nboots <- 5000
 if(TEST) nboots <- 200
 file_name <- "boots_cms.RData"
-source(here::here("inst/scripts/create_scaling_matrices.R"))
+create_scaling_matrices(comix_survey, polymod_survey, nboots,
+                        matrices_path, file_name)
 
 ## STEP 4: Set up PHYSICAL CONTACT matrices - bootstrapped
 # Create contact matrices for each survey and contact location
 nboots <- 5000
 if(TEST) nboots <- 200
 file_name <- "boots_phys_cms.RData"
-source(here::here("inst/scripts/create_scaling_matrices_phys.R"))
+create_scaling_matrices_phys(comix_survey, polymod_survey, nboots,
+                        matrices_path, file_name)
 
 
-# source(here::here('inst/scripts/create_survey_contact_matrices.R'))
-# saveRDS(comix_cm_phys, file = "data/contact_matrices/comix_cm_phys.rds")
-# saveRDS(polymod_cm_phys, file = "data/contact_matrices/polymod_cm_phys.rds")
 

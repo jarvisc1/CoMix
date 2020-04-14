@@ -2,7 +2,7 @@
 library(here)
 here::here()
 
-
+set.seed(14042020)
 # Set up paths for panel and wave specific analysis
 scripts_path <- here("inst", "scripts")
 
@@ -16,6 +16,8 @@ matrices_path <- file.path(data_path, "contact_matrices")
 online_matrices_path <- file.path(outputs_path, "contact_matrices_online")
 outputs_path <- file.path(base_outputs_path, survey_sub_path)
 
+# Set TEST to TRUE to run 200 bootstrap samples, FALSE to run 5000
+TEST = FALSE
 
 # Create all contact matrices
 source(here::here("inst", "scripts", "aaa_create_contact_matrices.R"))
