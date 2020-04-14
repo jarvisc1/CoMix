@@ -95,17 +95,19 @@ create_scaling_matrices_observed(comix_survey, polymod_survey, nboots,
 # Create contact matrices for each survey and contact location
 nboots <- 1
 file_name <- "comix_phys_cms.RData"
-create_scaling_matrices(comix_survey, polymod_survey, nboots,
+create_scaling_matrices_phys(comix_survey, polymod_survey, nboots,
                         matrices_path, file_name)
 
 
-## STEP 3: Set up SYMMETRICAL OBSERVED matrices - bootstrapped
+## STEP 3: Set up SYMMETRICAL matrices - bootstrapped
 # Create contact matrices for each survey and contact location
 nboots <- 5000
 if(TEST) nboots <- 200
 file_name <- "boots_cms.RData"
 create_scaling_matrices(comix_survey, polymod_survey, nboots,
                         matrices_path, file_name)
+
+
 
 ## STEP 4: Set up PHYSICAL CONTACT matrices - bootstrapped
 # Create contact matrices for each survey and contact location

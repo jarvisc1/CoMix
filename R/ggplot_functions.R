@@ -95,7 +95,8 @@ gg_matrix <- function(dt, breaks = c(0,0.5, 1), age_lab = FALSE) {
 
 }
 
-
+#' Will add documentation
+#' @export
 ## For plots
 age_labs <- c("0-4",
               "5-17",

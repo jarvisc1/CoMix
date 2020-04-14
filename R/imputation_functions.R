@@ -74,7 +74,8 @@ scale_matrix <- function(fullmat, mat1, mat2, i = 1, ...){
 
 
 ### Final function which calcualte the scaling factors for R.
-
+#' Will add documentation
+#' @export
 scale_factor_R <- function(mat1, mat2, i = 1, ...){
   # browser()
   x1 <- update_cm(mat1, mat2, i = i, ...)
@@ -86,9 +87,9 @@ scale_factor_R <- function(mat1, mat2, i = 1, ...){
 
 
 ### NEED DOCUMENTATION
-
-
-
+###
+#' Will add documentation
+#' @export
 update_cm <- function(
   mat1, mat2,
   impute_rows = 1:2, impute_cols = 1:8,
@@ -116,7 +117,8 @@ update_cm <- function(
 ### Repeat these for a single matrix objects.
 
 ##################
-
+#' Will add documentation
+#' @export
 scale_factor_single <- function(mat1, mat2, ... ){
   x1 <- split_cm_single(mat1, ...)
   # browser()
@@ -126,12 +128,16 @@ scale_factor_single <- function(mat1, mat2, ... ){
   max_eigen_ratio(x1, x2)
 }
 
+#' Will add documentation / may refactor
+#' @export
 split_cm_single <- function(mat, i = 1, row = 3:8, col = 3:8, ...){
   mat[row,col]
 }
 
 
 # Take a full matrix and scale it based on ratio of mat1 and mat2
+#' Will add documentation
+#' @export
 scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
   mat1 <- mat1
 
@@ -140,6 +146,8 @@ scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
 }
 
 ## Specific for this analysis get imputed values for CoMix matrix
+## #' Will add documentation
+#' @export
 impute_values_single <- function(i = 1, school = FALSE, ...){
 
   imputed_values <- scale_matrix_single(
@@ -175,6 +183,8 @@ impute_values_single <- function(i = 1, school = FALSE, ...){
 
 
 ## Specific for this analysis get imputed values for CoMix matrix
+## Will add documentation
+#' @export
 impute_values <- function(i = 1, school = FALSE, ...){
   imputed_values <- scale_matrix(
     polymod_cm_home,
@@ -207,7 +217,8 @@ impute_values <- function(i = 1, school = FALSE, ...){
 
 }
 
-
+#' Will add documentation
+#' @export
 scale_list <- function(mat_list, row = 2, col = 2, scale = 0.5) {
   mat_list$matrix[row, col] <- mat_list$matrix[row, col]*scale
   mat_list

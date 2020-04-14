@@ -1,4 +1,6 @@
-
+#' Will add documentation
+#' @export
+#'
 create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     matrices_path, file_name,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),

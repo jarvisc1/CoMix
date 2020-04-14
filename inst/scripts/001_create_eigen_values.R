@@ -6,8 +6,10 @@ eigen_phys_scaled <- readRDS(
   file.path(matrices_path, "eigen_physical_polymod_scaled.rds"))
 
 
-R_mean <- 2.68
-R_sd <- 0.57
+R_mean <- 2.6
+R_sd <- 0.54
+print(paste("R_mean:", R_mean))
+print(paste("R_sd:", R_sd))
 
 type <- rep(c("All", "Physical", "All_scaled", "Phys_scaled"), each = boots)
 
@@ -18,6 +20,9 @@ eigen_df <- data.table(type, eigens)
 previousR <- rnorm(nrow(eigen_df), mean = R_mean, sd = R_sd)
 
 eigen_df <- data.table(type, eigens, previousR, newR = eigens*previousR)
+attr(eigen_df, 'R_mean') <- R_mean
+attr(eigen_df, 'R_d') <- R_sd
+
 
 saveRDS(eigen_df, file = file.path(matrices_path, "rds_eigen.rds"))
 
@@ -74,7 +79,11 @@ eigen_summary_table <- data.table(
   )
 
 eigen_summary_table
+attr(eigen_summary_table, 'R_mean') <- R_mean
+attr(eigen_summary_table, 'R_d') <- R_sd
 
+saveRDS(eigen_summary_table,
+        file.path(outputs_path, "r_summary_table.rds"))
 write.csv(eigen_summary_table,
           file.path(outputs_path, "eigen_summary_table.csv"))
 
@@ -109,7 +118,9 @@ R_summary_table <- data.table(
 )
 
 R_summary_table
+attr(R_summary_table, 'R_mean') <- R_mean
+attr(R_summary_table, 'R_d') <- R_sd
 
-
+saveRDS(R_summary_table, file.path(outputs_path, "r_summary_table.rds"))
 write.csv(R_summary_table, file.path(outputs_path, "r_summary_table.csv"))
 

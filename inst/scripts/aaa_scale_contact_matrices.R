@@ -10,7 +10,7 @@ library(data.table)
 
 ## Set up the observed contact matrix
 
-load('inst/data/contact_matrices/comix_cms.RData')
+load(file.path(matrices_path, "comix_cms.RData"))
 
 comix_cm_imputed <- scale_matrix_single(polymod_cm, comix_cm, polymod_cm)
 
@@ -34,13 +34,14 @@ remove(list = ls()[(grepl("comix_cm_", ls()))])
 remove(list = ls()[(grepl("polymod_cm_", ls()))])
 
 
-load('inst/data/contact_matrices/comix_phys_cms.RData')
+load(file.path(matrices_path, "comix_phys_cms.RData"))
 
 
 comix_cm_phys_imputed <- scale_matrix_single(polymod_cm, comix_cm, polymod_cm)
 image(comix_cm_phys_imputed)
 
-saveRDS(comix_cm_phys_imputed, file = 'inst/data/contact_matrices/comix_cm_phys_imputed.rds')
+saveRDS(comix_cm_phys_imputed,
+        file = file.path(matrices_path, "comix_cm_phys_imputed.rds"))
 
 ## Of each matrix
 remove(list = ls()[(grepl("comix_cm_", ls()))])
