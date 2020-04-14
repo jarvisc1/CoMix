@@ -7,7 +7,7 @@ here::here()
 ##  - participants data.table
 ##  - contacts data.table
 ##  - participants and contacts combined data.table
-survey_sub_path <- file.path("panel_b", "wave_1")
+survey_sub_path <- file.path("panel_a", "wave_1")
 
 set.seed(14042020)
 # Set up paths for panel and wave specific analysis

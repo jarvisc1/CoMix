@@ -292,7 +292,7 @@ ggsave(filename = file.path(outputs_path, "figure1-panelb.png"),
 ##
 # library(data.table)
 
-part <- readRDS('data/clean_participants.rds')
+part <- readRDS(file.path(data_path, "clean_participants.rds"))
 part$weekday <- weekdays(part$date)
 
 age_lab <- "Age of participant (years)"

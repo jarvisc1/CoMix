@@ -67,8 +67,11 @@ part_m <- part[, .(
 
 
 comix_survey <- survey(part_m, contacts_m)
-polymod_survey <- polymod
 comix_cm <- create_cm(comix_survey)
+
+polymod_part <- readRDS(file.path(base_data_path, "polymod_participants.rds"))
+polymod_contacts <- readRDS(file.path(base_data_path, "polymod_contacts.rds"))
+polymod_survey <- survey(polymod_part, polymod_contacts)
 polymod_cm <- create_cm(polymod_survey)
 
 
