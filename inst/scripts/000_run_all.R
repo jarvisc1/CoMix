@@ -2,14 +2,19 @@
 library(here)
 here::here()
 
+## SET PANEL AND WAVE PATH - the following data should be stored in and rds file
+## in the corresponding data folder:
+##  - participants data.table
+##  - contacts data.table
+##  - participants and contacts combined data.table
+survey_sub_path <- file.path("panel_b", "wave_1")
+
 set.seed(14042020)
 # Set up paths for panel and wave specific analysis
 scripts_path <- here("inst", "scripts")
 
 base_data_path <- here("inst", "data")
 base_outputs_path <- here("inst", "outputs")
-survey_sub_path <- file.path("panel_b", "wave_1")
-
 
 data_path <- file.path(base_data_path, survey_sub_path)
 matrices_path <- file.path(data_path, "contact_matrices")
