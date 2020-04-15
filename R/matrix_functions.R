@@ -1,34 +1,39 @@
 #' Splits a matrix by rows and columns
 #'
-#' Take a matrix or list of matrices and split then based on the row and column values provided
+#' Take a matrix or list of matrices and split then based on the row and column
+#' values provided
 #'
-#' @param mat matrix
-#' @param i the element in the list to use if mat is a list of matrices
-#' @param row a value or range 1:3 of the rows to filter by
-#' @param column a value or range 1:3 of the rows to filter by
+#' @param mat matrix or list of matrices
+#' @param i the element in the list to use if mat is a list of matrices, defaults
+#' to false for a single matrix
+#' @param row a value or range (example, 1:3) of the rows to include
+#' @param column a value or range (example, 1:3) of the rows to include
 #'
 #' @export
-#'
-
-
-split_cm <- function(mat, i = 0, row = 3:8, col = 3:8, ...){
-  if(i == 0 ){
-    mat[row,col]
-  } else {
+#
+split_cm <- function(mat, i = 1, row = 3:8, col = 3:8, ...){
+  # browser()
+  # if (isFALSE(i)) {
+  #   mat[row,col]
+  # } else {
     mat[[i]]$matrix[row,col]
-  }
+  # }
 }
+scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
+  mat1 <- mat1
 
+  fullmat * scale_factor_single(mat1, mat2, i = i, ...)
+
+}
 
 #' Makes a square matrix symmetric
 #'
-#' Take a matrix ded
+#' Take a matrix and
 #'
-#' @param x matrix
+#' @param x a square matrix
 #'
 #' @export
-#'
-
+#
 
 symm_mat <- function(x){
   if(nrow(x) != ncol(x)){
@@ -55,79 +60,55 @@ max_eigen_ratio <- function(x, y){
 }
 
 
-#'  Scale by eigenvalue ratio
+
+#' #'  Scales contact matrices
+#' #'
+#' #' Take the ratio of the max eigenvalues of two matrices
+#' #'
+#' #' @param x square matrix with the same dimentions as y
+#' #' @param y square matrix with the same dimentions as y
+#' #'
+#' #' @export
+#' #'
+
+
+#' Create a contact matrix with filters
 #'
-#' Take two matrices split them if required to be of the same size and square
-#' Then take the ratio of the maximum eigenvalues
-#'
-#' @param mat1 Matrix
-#' @param mat2 Matrix
-#' @param split1 whether to split the first matrix
-#' @param split2 whether to split the second matrix
-#'
-#' @export
-#'
+#' @param survey a socialmixR survey object
+#' @param countries a character vector passed to socialmixR::contact_matrix
+#' @param age.limit a numeric vectors used to create breaks of ages, passed to
+#' socialmixR::contact_matrix
+#' @param filter_text = a list of text to filter the survey, passed to
+#' socialmixR::contact_matrix
+#' @param boots a numerical, defaulted to 1, indicating the number of bootsraps,
+#' passed to socialmixR::contact_matrix
+#' #' @param return_matrix a logical, defaulted to true, to return a socialmixR
+#' contact matrix object. Returns a socialmixR survey object if set to FALSE
+cm_filter <- function(
+  survey,
+  countries = "United Kingdom",
+  age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
+  symmetric = TRUE,
+  filter_text = list(),
+  boots = 1,
+  return_matrix = TRUE
+) {
 
-
-
-# Take two matrices and calculate the scale factor for them
-## Repeats the above functions to get the ratio of the max eigen values
-## Of each matrix
-scale_factor <- function(mat1, mat2, split1 = FALSE, split2 = FALSE, ... ){
-
-  if (split1){
-    x1 <- split_cm(mat1, ...)
-  } else{
-    x1 <- mat1
-  }
-  if (split2){
-    x2 <- split_cm(mat2, ...)
-  } else{
-    x2 <- mat2
-  }
-
-  x1 <- symm_mat(x1)
-  x2 <- symm_mat(x2)
-  max_eigen_ratio(x1, x2)
-}
-
-
-#'  Scale by matrix by eigenvalue ratio
-#'
-#' Take two matrices split them if required to be of the same size and square
-#' Then take the ratio of the maximum eigenvalues
-#'
-#' @param scale_matrix Full matrix which which is used for Matrix
-#' @param missing_matrix Matrix with missing value that need imputing
-#' @param split1 whether to split the first matrix
-#' @param split2 whether to split the second matrix
-#'
-#' @export
-#'
-
-
-scale_matrix <- function(scale_matrix, missing_matrix, i = 0, ...){
-  if(i == 0 ){
-    full_matrix <- scale_matrix
+  x <- contact_matrix(
+    survey,
+    countries = countries,
+    age.limits = age_limits,
+    symmetric = symmetric,
+    filter = filter_text,
+    n = boots
+  )
+  if(return_matrix){
+    if(boots == 1){
+      return(x$matrix)
+    } else {
+      return(x$matrices)
+    }
   } else {
-    scale_matrix <- scale_matrix[[i]]$matrix
-    missing_matrix <- missing_matrix[[i]]$matrix
-    full_matrix <- scale_matrix
+    return(x)
   }
-
-
-  full_matrix * scale_factor(scale_matrix, missing_matrix, i = 0, ...)
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

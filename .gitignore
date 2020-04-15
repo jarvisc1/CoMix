@@ -1,3 +1,6 @@
 .Rproj.user
 *temp_function_names*
 
+inst/data/*
+inst/outputs/*
+inst/scripts/temp/*

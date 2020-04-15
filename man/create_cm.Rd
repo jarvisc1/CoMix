@@ -6,43 +6,29 @@
 \usage{
 create_cm(
   survey,
-  matrix_output = TRUE,
-  country = "United Kingdom",
-  age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
+  countries = "United Kingdom",
+  age_limits,
   symmetric = FALSE,
-  filter = FALSE,
-  phys_contact = NULL,
-  home = NULL,
-  other_house = NULL,
-  work = NULL,
-  school = NULL,
-  gender = NULL,
-  hhm_quarantine = NULL,
-  hhm_isolate = NULL,
-  hhm_limit_work = NULL,
-  hhm_limit_school = NULL,
-  hhm_work_closed = NULL,
-  part_quarantine = NULL,
-  part_isolate = NULL,
-  part_limit_work = NULL,
-  part_limit_school = NULL,
-  part_work_closed = NULL,
-  part_covid_test_results = NULL,
-  part_covid_contact = NULL,
+  filter_text = list(),
   boots = 1,
+  return_matrix = TRUE,
   ...
 )
 }
 \arguments{
 \item{survey}{a survey object from socialmixr}
 
-\item{matrix_output}{return just the matrix or the matrix and participants default = TRUE}
-
-\item{country}{limit to one or more countries; if not given, will use all countries in the survey; these can be given as country names or 2-letter (ISO Alpha-2) country codes}
-
 \item{age_limits}{lower limits of the age groups over which to construct the matrix}
 
 \item{symmetric}{whether to make matrix symmetric}
+
+\item{boots}{number of bootstrap sample}
+
+\item{export_var_names}{Whether to export the variable names into a seperate file}
+
+\item{matrix_output}{return just the matrix or the matrix and participants default = TRUE}
+
+\item{country}{limit to one or more countries; if not given, will use all countries in the survey; these can be given as country names or 2-letter (ISO Alpha-2) country codes}
 
 \item{filter}{whether to filter the data default is FALSE, need to be TRUE for filter variables to work}
 
@@ -81,10 +67,6 @@ create_cm(
 \item{part_covid_test_results}{filter by participants with a positive covid test result}
 
 \item{part_covid_contact}{filter by participants who have had contact with a someone who has had covid}
-
-\item{boots}{number of bootstrap sample}
-
-\item{export_var_names}{Whether to export the variable names into a seperate file}
 }
 \value{
 Either contact matrix or contact matrix and with participants information
