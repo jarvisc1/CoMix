@@ -46,7 +46,7 @@ matrix_plot
 
 part <- readRDS(file.path(data_path, "clean_participants.rds"))
 polymod_part <- readRDS(
-  file.path(base_data_directory , "polymod_participants.rds"))
+  file.path(base_data_path, "polymod_participants.rds"))
 
 class(part$part_age_group)
 class(polymod_part$part_age_group)
@@ -98,7 +98,7 @@ age_compare_plot
 
 contacts_part <- readRDS(file.path(data_path, "clean_contacts_part.rds"))
 polymod_contacts_part <- readRDS(
-  file.path(base_data_directory, "polymod_contacts_part.rds"))
+  file.path(base_data_path, "polymod_contacts_part.rds"))
 
 
 h2020_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),

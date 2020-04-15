@@ -1,16 +1,18 @@
 
 library(here)
 here::here()
+set.seed(14042020)
 
-## SET PANEL AND WAVE PATH - the following data should be stored in and rds file
-## in the corresponding data folder:
+
+## SET PANEL AND WAVE PATH for wave specific analysis - the following data
+## should be stored in and rds file in the corresponding data folder:
 ##  - participants data.table
 ##  - contacts data.table
 ##  - participants and contacts combined data.table
-survey_sub_path <- file.path("panel_b", "wave_1")
 
-set.seed(14042020)
-# Set up paths for panel and wave specific analysis
+survey_sub_path <- file.path("panel_b", "wave_1")
+age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
+age_limits_sym <- c(18, 30, 40, 50, 60, 70)
 
 scripts_path <- here("inst", "scripts")
 
@@ -42,7 +44,7 @@ source(file.path(scripts_path, "004_analysis_figures.R"))
 # Summarize results
 # Will break out into functions
 #
-outputs_files <- list.files(base_outputs_directory, recursive = TRUE)
+outputs_files <- list.files(base_outputs_path, recursive = TRUE)
 r_summary_paths <- grep("r_summary_table.csv", outputs_files, value = TRUE)
 r_summary_paths <- grep("interim", r_summary_paths,
                         value = TRUE, invert = TRUE)
@@ -84,7 +86,7 @@ ggsave(plot = r0_errrorbar,
        filename = file.path(base_outputs_path, "combined", "r_summary.png"))
 
 
-# Remove variables to prevent carry-over errors
+## Remove variables to prevent carry-over errors
 rm(scripts_path)
 rm(base_data_path)
 rm(base_outputs_path)

@@ -2,7 +2,7 @@ Package: CoMix
 Title: Functions for running the CoMix analyses
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Christopher",
+    c(person(given = "Christopher",
            family = "Jarvis",
            role = c("aut", "cre"),
            email = "christopher.jarvis@lshtm.ac.uk",
@@ -11,7 +11,7 @@ Authors@R:
            family = "Gimma",
            role = c("aut"),
            email = "amy.gimma@lshtm.ac.uk",
-           comment = c(ORCID = "0000-0003-2645-7212"))
+           comment = c(ORCID = "0000-0003-2645-7212")))
 Description: What the package does (one paragraph).
 License: What license it uses
 Encoding: UTF-8
