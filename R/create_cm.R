@@ -45,7 +45,7 @@
 create_cm <- function(
   survey,
   countries = "United Kingdom",
-  age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
+  age_limits,
   symmetric = FALSE,
   filter_text = list(),
   boots = 1,

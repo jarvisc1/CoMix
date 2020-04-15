@@ -7,10 +7,11 @@ here::here()
 ##  - participants data.table
 ##  - contacts data.table
 ##  - participants and contacts combined data.table
-survey_sub_path <- file.path("panel_a", "wave_2")
+survey_sub_path <- file.path("panel_b", "wave_1")
 
 set.seed(14042020)
 # Set up paths for panel and wave specific analysis
+
 scripts_path <- here("inst", "scripts")
 
 base_data_path <- here("inst", "data")
@@ -18,8 +19,8 @@ base_outputs_path <- here("inst", "outputs")
 
 data_path <- file.path(base_data_path, survey_sub_path)
 matrices_path <- file.path(data_path, "contact_matrices")
-online_matrices_path <- file.path(outputs_path, "contact_matrices_online")
 outputs_path <- file.path(base_outputs_path, survey_sub_path)
+online_matrices_path <- file.path(outputs_path, "contact_matrices_online")
 
 # Set TEST to TRUE to run 200 bootstrap samples, FALSE to run 5000
 TEST = FALSE
@@ -81,3 +82,15 @@ r0_errrorbar
 
 ggsave(plot = r0_errrorbar,
        filename = file.path(base_outputs_path, "combined", "r_summary.png"))
+
+
+# Remove variables to prevent carry-over errors
+rm(scripts_path)
+rm(base_data_path)
+rm(base_outputs_path)
+rm(data_path)
+rm(matrices_path)
+rm(outputs_path)
+rm(online_matrices_path)
+rm(age_limits)
+rm(age_limits_sym)

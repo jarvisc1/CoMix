@@ -66,13 +66,15 @@ part_m <- part[, .(
 ]
 
 
+# age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
+# age_limits_sym <- c(18, 30, 40, 50, 60, 70)
 comix_survey <- survey(part_m, contacts_m)
-comix_cm <- create_cm(comix_survey)
+comix_cm <- create_cm(comix_survey, age_limits = age_limits_sym)
 
 polymod_part <- readRDS(file.path(base_data_path, "polymod_participants.rds"))
 polymod_contacts <- readRDS(file.path(base_data_path, "polymod_contacts.rds"))
 polymod_survey <- survey(polymod_part, polymod_contacts)
-polymod_cm <- create_cm(polymod_survey)
+polymod_cm <- create_cm(polymod_survey, age_limits =  age_limits)
 
 
 ## Save the survey and contact matrix objects
@@ -89,6 +91,8 @@ saveRDS(polymod_cm, file = file.path(matrices_path,"polymod_cm.rds"))
 nboots <- 1
 file_name <- "comix_cms.RData"
 create_scaling_matrices_observed(comix_survey, polymod_survey, nboots,
+                                 age_limits = age_limits,
+                                 age_limits_sym = age_limits_sym,
                         matrices_path, file_name)
 
 ## STEP 2: Set up PHYSICAL CONTACT matrices - single
@@ -96,6 +100,8 @@ create_scaling_matrices_observed(comix_survey, polymod_survey, nboots,
 nboots <- 1
 file_name <- "comix_phys_cms.RData"
 create_scaling_matrices_phys(comix_survey, polymod_survey, nboots,
+                             age_limits = age_limits,
+                             age_limits_sym = age_limits_sym,
                         matrices_path, file_name)
 
 
@@ -105,6 +111,8 @@ nboots <- 5000
 if(TEST) nboots <- 200
 file_name <- "boots_cms.RData"
 create_scaling_matrices(comix_survey, polymod_survey, nboots,
+                        age_limits = age_limits,
+                        age_limits_sym = age_limits_sym,
                         matrices_path, file_name)
 
 
@@ -115,7 +123,9 @@ nboots <- 5000
 if(TEST) nboots <- 200
 file_name <- "boots_phys_cms.RData"
 create_scaling_matrices_phys(comix_survey, polymod_survey, nboots,
+                             age_limits = age_limits,
+                             age_limits_sym = age_limits_sym,
                         matrices_path, file_name)
 
 
-
+rm(nboots)

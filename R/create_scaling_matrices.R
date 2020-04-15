@@ -8,8 +8,11 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
 
   ## We do not have data on participants below 18 so need to have lower limit
   ## Of 18 to do the inputed and have a symmetric matrix
-  comix_cm <- cm_filter(comix_survey, symmetric = FALSE, boots = nboots)
-  polymod_cm <- cm_filter(polymod_survey, symmetric = TRUE, boots = nboots)
+  comix_cm <- cm_filter(comix_survey, age_limits = age_limits,
+                        symmetric = FALSE, boots = nboots
+                        )
+  polymod_cm <- cm_filter(polymod_survey,  age_limits = age_limits,
+                          symmetric = TRUE, boots = nboots)
 
 
   ## Create location specific contact matrices

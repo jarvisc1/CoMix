@@ -6,13 +6,14 @@ create_scaling_matrices_observed <- function(comix_survey, polymod_survey,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
                                     age_limits_sym = c(18, 30, 40, 50, 60, 70)) {
 
-  comix_cm <- cm_filter(comix_survey, symmetric = FALSE, boots = nboots)
-  polymod_cm <- cm_filter(polymod_survey, symmetric = TRUE, boots = nboots)
+  comix_cm <- cm_filter(comix_survey,  age_limits = age_limits,
+                        symmetric = FALSE, boots = nboots)
+  polymod_cm <- cm_filter(polymod_survey, age_limits = age_limits,
+                          symmetric = TRUE, boots = nboots)
 
 
   ## Create location specific contact matrices
   ## Use age_limits_sym for COMIX matrices to match POLYMOD dimensions
-  age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
   comix_cm_school <- cm_filter(survey = comix_survey, age_limits = age_limits,
                                symmetric = FALSE, boots = nboots,
                                filter_text = list(cnt_school = "Yes"))
@@ -29,7 +30,6 @@ create_scaling_matrices_observed <- function(comix_survey, polymod_survey,
 
   ## Repeat for Polymod
   ## Use age_limits for POLYMOD matrices
-  age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
 
   polymod_cm_school <- cm_filter(survey = polymod_survey, age_limits = age_limits,
                                  symmetric = TRUE, boots = nboots,
