@@ -76,7 +76,6 @@ saveRDS(comix_survey, file = file.path(matrices_path, "polymod_survey.rds"))
 saveRDS(comix_cm, file = file.path(matrices_path, "comix_cm.rds"))
 saveRDS(polymod_cm, file = file.path(matrices_path,"polymod_cm.rds"))
 
-# source(here::here("R/matrix_functions.R"))
 
 
 ## STEP 1: Set up OBSERVED matrices - single

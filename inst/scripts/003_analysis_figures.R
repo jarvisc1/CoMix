@@ -40,7 +40,6 @@ t_counts <- rbind(
                N_participants,
                order = 3)
            ],
-  # Probably regroup to 6+ and missing
   t_hh_size[, .(Category = hh_size_lab,
                 Variables = hh_size,
                 N_participants,
@@ -148,7 +147,7 @@ polymod[, hh_size := fcase(
   hh_size == 2, "2",
   hh_size == 3, "3",
   hh_size == 4, "4",
-  hh_size > 4, "6+"
+  hh_size > 4, "4+"
 )]
 
 polymod <- polymod[part_age_group != "[0,18)"]
