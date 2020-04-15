@@ -6,12 +6,6 @@ library(ggplot2)
 library(CoMix)
 here::here()
 
-source(here::here("R/create_cm.R"))
-source(here::here("R/matrix_functions.R"))
-source(here::here("R/imputation_functions.R"))
-source(here::here("R/create_scaling_matrices.R"))
-source(here::here("R/create_scaling_matrices_phys.R"))
-source(here::here("R/create_scaling_matrices_observed.R"))
 
 
 ## Requires participants and contacts data
@@ -66,8 +60,7 @@ part_m <- part[, .(
 ]
 
 
-# age_limits <- c(0, 5, 18, 30, 40, 50, 60, 70)
-# age_limits_sym <- c(18, 30, 40, 50, 60, 70)
+
 comix_survey <- survey(part_m, contacts_m)
 comix_cm <- create_cm(comix_survey, age_limits = age_limits_sym)
 

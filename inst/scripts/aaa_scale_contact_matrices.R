@@ -1,5 +1,3 @@
-source('R/matrix_functions.R')
-source('R/imputation_functions.R')
 
 ### We need to impute the missing age contacts in the H2020 data.
 

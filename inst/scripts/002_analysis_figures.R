@@ -7,21 +7,18 @@ library(data.table)
 ggthemr("fresh")
 ## Create Figure of Contact Matrices
 
-source('R/ggplot_functions.R')
-# source('r/functions/utility_functions.R')
 
-h2020_cm <- readRDS(file.path(matrices_path, "comix_cm.rds"))
-# h2020_cm <- h2020_cm[[1]]$matrix
-h2020_cm_imputed <- readRDS(file.path(matrices_path, "comix_cm_imputed.rds"))
+comix_cm <- readRDS(file.path(matrices_path, "comix_cm.rds"))
+comix_cm_imputed <- readRDS(file.path(matrices_path, "comix_cm_imputed.rds"))
 polymod_cm <- readRDS(file.path(matrices_path, "polymod_cm.rds"))
 
 
-rowSums(polymod_cm)/rowSums(h2020_cm)
+rowSums(polymod_cm)/rowSums(comix_cm)
 colnames(polymod_cm)
 
 cmatrices <- list(
   "POLYMOD" = polymod_cm,
-  "CoMix" = h2020_cm_imputed
+  "CoMix" = comix_cm_imputed
 )
 
 ## Transform data
@@ -101,13 +98,13 @@ polymod_contacts_part <- readRDS(
   file.path(base_data_path, "polymod_contacts_part.rds"))
 
 
-h2020_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),
+comix_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),
                             by = .(part_id, part_age_group)]
 polymod_avg <- polymod_contacts_part[ ,  .(study = "POLYMOD", N = .N) ,
                                       by = .(part_id, part_age_group)]
 
 # Get mean and SD
-h2020_avg_all <- h2020_avg[,
+comix_avg_all <- comix_avg[,
                            .(
                              mean_age = mean(N),
                              sd_age =  sd(N),
@@ -125,18 +122,18 @@ polymod_avg_all <- polymod_avg[,
                                by = .(study, part_age_group)]
 
 
-h2020_avg_all[, phys_contact := 0]
+comix_avg_all[, phys_contact := 0]
 
 polymod_avg_all[, phys_contact := 0]
 
 
 ## Repeat for Physical
-h2020_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),
+comix_avg <- contacts_part[ ,  .(study = "CoMix", N = .N),
                             by = .(part_id, part_age_group, phys_contact)]
 polymod_avg <- polymod_contacts_part[ ,  .(study = "POLYMOD", N = .N) ,
                                       by = .(part_id, part_age_group, phys_contact)]
 
-h2020_avg_phys <- h2020_avg[phys_contact == 1,
+comix_avg_phys <- comix_avg[phys_contact == 1,
                             .(
                               mean_age = mean(N),
                               sd_age =  sd(N),
@@ -152,15 +149,15 @@ polymod_avg_phys <- polymod_avg[, .(
 ),
 by = .(study, part_age_group)]
 
-h2020_avg_phys[, phys_contact := 1]
+comix_avg_phys[, phys_contact := 1]
 polymod_avg_phys[, phys_contact := 1]
 
 
 # Combine into one dataset
 comb_avg <- rbind(
-  h2020_avg_all,
+  comix_avg_all,
   polymod_avg_all,
-  h2020_avg_phys,
+  comix_avg_phys,
   polymod_avg_phys
 )
 
