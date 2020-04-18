@@ -7,11 +7,11 @@
 update_cm(
   mat1,
   mat2,
-  impute_rows = 1:2,
-  impute_cols = 1:8,
+  impute_rows = 1:3,
+  impute_cols = 1:9,
   i = 1,
-  observed_rows = 2:8,
-  observed_col = 1:8,
+  observed_rows = 3:9,
+  observed_col = 1:9,
   school = FALSE,
   ...
 )
