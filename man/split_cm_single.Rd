@@ -4,7 +4,7 @@
 \alias{split_cm_single}
 \title{Will add documentation / may refactor}
 \usage{
-split_cm_single(mat, i = 1, row = 3:8, col = 3:8, ...)
+split_cm_single(mat, i = 1, row = 4:9, col = 4:9, ...)
 }
 \description{
 Will add documentation / may refactor

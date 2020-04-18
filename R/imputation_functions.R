@@ -130,7 +130,7 @@ scale_factor_single <- function(mat1, mat2, ... ){
 
 #' Will add documentation / may refactor
 #' @export
-split_cm_single <- function(mat, i = 1, row = 3:8, col = 3:8, ...){
+split_cm_single <- function(mat, i = 1, row = 4:9, col = 4:9, ...){
   mat[row,col]
 }
 
