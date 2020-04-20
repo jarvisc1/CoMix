@@ -61,13 +61,13 @@ max_eigen_ratio <- function(x, y){
 #'
 #' @param mat1 Matrix
 #' @param mat2 Matrix
-#' @param split1 whether to split the first matrix
-#' @param split2 whether to split the second matrix
+#' @param split1 Logical default FALSE whether to split the first matrix
+#' @param split2 Logical default TRUE whether to split the second matrix
 #'
 #' @export
 #'
 
-scale_factor <- function(mat1, mat2, split1 = TRUE, split2 = TRUE, ... ){
+scale_factor <- function(mat1, mat2, split1 = FALSE, split2 = TRUE, ... ){
 
   if (split1){
     x1 <- split_cm(mat1, ...)

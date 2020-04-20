@@ -1,15 +1,87 @@
+#' Impute values of comix based on POLYMOD
+#'
+#' Tale comix contacts matrix and impute the values based on the scale of the
+#' dominant eigenvalues between comix and polymod
+#'
+#' @param i number of bootstraps, if zero then represent a single matrix
+#' @param home logical default TRUE to include home for imputation
+#' @param work logical default TRUE to include work for imputation
+#' @param other logical default TRUE to include other for imputation
+#' @param school ogical default FALSE to include school for imputation
+#' @param home logical default TRUE to include home for imputation
+#' @export
+#'
+#'
+#'
+
+impute_values <- function(i = 0,
+                          home = TRUE,
+                          work = TRUE,
+                          other = TRUE,
+                          school = FALSE,
+                          ...){
+  imputed_values <- 0
+
+  if(home){
+    home_impute <- scale_matrix(
+      polymod_cm_home,
+      comix_cm_home,
+      i = i,
+      ...
+    )
+    imputed_values <- home_impute
+  }
+
+  if(work){
+    work_impute <-  scale_matrix(
+      polymod_cm_work,
+      comix_cm_work,
+      i = i,
+      ...
+    )
+    imputed_values <- imputed_values + work_impute
+
+  }
+
+  if(other){
+    other_impute <- scale_matrix(
+      polymod_cm_other,
+      comix_cm_other,
+      i = i,
+      ...
+    )
+    imputed_values <- imputed_values + other_impute
+  }
+
+  if(school){
+    school_impute <- scale_matrix(
+      polymod_cm_school,
+      comix_cm_school,
+      i = i,
+      ...
+    )
+    imputed_values <- imputed_values + school_impute
+  }
+  return(imputed_values)
+}
 
 
-### NEED DOCUMENTATION
-###
+
+#' Impute only the required values of the contact matrix
+#'
+#' Only impute the required rows.
 #' Will add documentation
 #' @export
+#'
+#'
+#'
 update_cm <- function(
   mat1, mat2,
   impute_rows = 1:3, impute_cols = 1:9,
   i = 1,
   observed_rows = 4:9,
   observed_col = 1:9,
+  reciprocol = TRUE,
   school = FALSE,
   ...
 ){
@@ -28,36 +100,6 @@ update_cm <- function(
   symm_mat(update_mat)
 }
 
-### Repeat these for a single matrix objects.
-
-##################
-#' Will add documentation
-#' @export
-scale_factor_single <- function(mat1, mat2, ... ){
-  x1 <- split_cm_single(mat1, ...)
-  # browser()
-  x2 <- split_cm_single(mat2, ...)
-  x1 <- symm_mat(x1)
-  x2 <- symm_mat(x2)
-  max_eigen_ratio(x1, x2)
-}
-
-#' Will add documentation / may refactor
-#' @export
-split_cm_single <- function(mat, i = 1, row = 4:9, col = 4:9, ...){
-  mat[row,col]
-}
-
-
-# Take a full matrix and scale it based on ratio of mat1 and mat2
-#' Will add documentation
-#' @export
-scale_matrix_single <- function(fullmat, mat1, mat2, i = 1, ...){
-  mat1 <- mat1
-
-  fullmat * scale_factor_single(mat1, mat2, i = i, ...)
-
-}
 
 ## Specific for this analysis get imputed values for CoMix matrix
 ## #' Will add documentation
@@ -96,40 +138,7 @@ impute_values_single <- function(i = 1, school = FALSE, ...){
 }
 
 
-## Specific for this analysis get imputed values for CoMix matrix
-## Will add documentation
-#' @export
-impute_values <- function(i = 1, school = FALSE, ...){
-  imputed_values <- scale_matrix(
-    polymod_cm_home,
-    comix_cm_home,
-    polymod_cm_home,
-    i = i,
-    ...
-  ) +
-    scale_matrix(
-      polymod_cm_work,
-      comix_cm_work,
-      polymod_cm_work,
-      i = i,
-      ...
-    ) +
-    scale_matrix(
-      polymod_cm_other,
-      comix_cm_other,
-      polymod_cm_other,
-      i = i,
-      ...
-    )
 
-  if(school){
-    ## Schools were closed so can not scale by this so just add
-    imputed_values <- imputed_values +
-      polymod_boot_cm_school[[i]]$matrix
-  }
-  return(imputed_values)
-
-}
 
 #' Will add documentation
 #' @export

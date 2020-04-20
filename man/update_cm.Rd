@@ -2,7 +2,7 @@
 % Please edit documentation in R/imputation_functions.R
 \name{update_cm}
 \alias{update_cm}
-\title{Will add documentation}
+\title{Impute only the required values of the contact matrix}
 \usage{
 update_cm(
   mat1,
@@ -12,10 +12,12 @@ update_cm(
   i = 1,
   observed_rows = 4:9,
   observed_col = 1:9,
+  reciprocol = TRUE,
   school = FALSE,
   ...
 )
 }
 \description{
+Only impute the required rows.
 Will add documentation
 }
