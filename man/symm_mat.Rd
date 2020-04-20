@@ -7,8 +7,8 @@
 symm_mat(x)
 }
 \arguments{
-\item{x}{a square matrix}
+\item{x}{matrix}
 }
 \description{
-Take a matrix and
+Take a matrix ded
 }

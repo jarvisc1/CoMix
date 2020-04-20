@@ -4,19 +4,17 @@
 \alias{split_cm}
 \title{Splits a matrix by rows and columns}
 \usage{
-split_cm(mat, i = 1, row = 3:8, col = 3:8, ...)
+split_cm(mat, i = 0, row = 3:8, col = 3:8, ...)
 }
 \arguments{
-\item{mat}{matrix or list of matrices}
+\item{mat}{matrix}
 
-\item{i}{the element in the list to use if mat is a list of matrices, defaults
-to false for a single matrix}
+\item{i}{the element in the list to use if mat is a list of matrices}
 
-\item{row}{a value or range (example, 1:3) of the rows to include}
+\item{row}{a value or range 1:3 of the rows to filter by}
 
-\item{column}{a value or range (example, 1:3) of the rows to include}
+\item{column}{a value or range 1:3 of the rows to filter by}
 }
 \description{
-Take a matrix or list of matrices and split then based on the row and column
-values provided
+Take a matrix or list of matrices and split then based on the row and column values provided
 }
