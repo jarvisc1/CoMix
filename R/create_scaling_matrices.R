@@ -75,13 +75,13 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
 
   for (i in 1:length(filter_comix)){
 
-    assign(comix_names[i], cm_filter(survey = comix_survey, age_limits = age_limits_sym,
+    assign(comix_names[[i]], cm_filter(survey = comix_survey, age_limits = age_limits_sym,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_comix[i])
+                                    filter_text = filter_comix[[i]])
     )
-    assign(polymod_names[i], cm_filter(survey = polymod_survey, age_limits = age_limits,
+    assign(polymod_names[[i]], cm_filter(survey = polymod_survey, age_limits = age_limits,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_polymod[i])
+                                    filter_text = filter_polymod[[i]])
     )
   }
 
