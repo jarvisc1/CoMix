@@ -3,8 +3,6 @@
 export(age_labs)
 export(create_cm)
 export(create_scaling_matrices)
-export(create_scaling_matrices_observed)
-export(create_scaling_matrices_phys)
 export(gg_matrix)
 export(impute_values)
 export(impute_values_single)

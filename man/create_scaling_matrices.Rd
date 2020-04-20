@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_scaling_matrices.R
 \name{create_scaling_matrices}
 \alias{create_scaling_matrices}
-\title{Will add documentation}
+\title{Creates matrices for scaling CoMix by POLYMOD}
 \usage{
 create_scaling_matrices(
   comix_survey,
@@ -11,9 +11,24 @@ create_scaling_matrices(
   matrices_path,
   file_name,
   age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
-  age_limits_sym = c(18, 30, 40, 50, 60, 70)
+  age_limits_sym = c(18, 30, 40, 50, 60, 70),
+  observed = FALSE
 )
 }
+\arguments{
+\item{comix_survey}{Survey object for comix}
+
+\item{polymod_survey}{Survey object for POLYMOD}
+
+\item{matrices_path}{File path where the matrices should be saved}
+
+\item{file_name}{Name of file for multiple matrices to be save into.}
+
+\item{observed}{logical parameter, defaulted to FALSE, for saving the observed contact matrices function}
+
+\item{split2}{logical parameter, defaulted to FALSE, for splitting the second matrix}
+}
 \description{
-Will add documentation
+Take two matrices split them if required to be of the same size and square
+Then take the ratio of the maximum eigenvalues
 }

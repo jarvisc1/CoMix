@@ -30,43 +30,7 @@ create_cm(
 
 \item{country}{limit to one or more countries; if not given, will use all countries in the survey; these can be given as country names or 2-letter (ISO Alpha-2) country codes}
 
-\item{filter}{whether to filter the data default is FALSE, need to be TRUE for filter variables to work}
-
-\item{phys_contact}{filter by physical or non-phyisical contact}
-
-\item{home}{filter by contacts in the home}
-
-\item{other_house}{filter to contacts in other homes}
-
-\item{work}{filter by contacts at work}
-
-\item{school}{fitler by contacts at school}
-
-\item{gender}{filter by gender}
-
-\item{hhm_quarantine}{filter by contacts with household members in quarantine}
-
-\item{hhm_isolate}{filter by contacts with household members in isolation}
-
-\item{hhm_limit_work}{filter by contacts with household members who have been asked to  limit work}
-
-\item{hhm_limit_school}{filter by contacts with household members who have have been asked to limit school}
-
-\item{hhm_work_closed}{filter by contacts with household members who have had their work closed}
-
-\item{part_quarantine}{filter by participants in quarantine}
-
-\item{part_isolate}{filter by participants in isolation}
-
-\item{part_limit_work}{filter by participants who have been asked to limit work}
-
-\item{part_limit_school}{filter by participants who have been asked to limit school}
-
-\item{part_work_closed}{filter by participants who have had their work closed}
-
-\item{part_covid_test_results}{filter by participants with a positive covid test result}
-
-\item{part_covid_contact}{filter by participants who have had contact with a someone who has had covid}
+\item{filter}{list object for filtering the contacts matrix to work}
 }
 \value{
 Either contact matrix or contact matrix and with participants information
