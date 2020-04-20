@@ -3,12 +3,13 @@
 #' Take two matrices split them if required to be of the same size and square
 #' Then take the ratio of the maximum eigenvalues
 #'
-#' @param comix_survey Survey object for comix
-#' @param polymod_survey Survey object for POLYMOD
-#' @param matrices_path File path where the matrices should be saved
+#' @param comix_survey Survey object for CoMix.
+#' @param polymod_survey Survey object for POLYMOD.
+#' @param matrices_path File path where the matrices should be saved.
 #' @param file_name Name of file for multiple matrices to be save into.
-#' @param split2 logical parameter, defaulted to FALSE, for splitting the second matrix
-#' @param observed logical parameter, defaulted to FALSE, for saving the observed contact matrices function
+#' @param split2 Logical parameter, defaulted to FALSE, for splitting the second matrix.
+#' @param observed Logical parameter, defaulted to FALSE, for saving the observed contact matrices function.
+#' @param phys Logical parameter, defaulted to false, if true then only physical contacts are returned.
 #' @export
 #' @export
 #'
@@ -16,7 +17,8 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     matrices_path, file_name,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
                                     age_limits_sym = c(18, 30, 40, 50, 60, 70),
-                                    observed = FALSE) {
+                                    observed = FALSE,
+                                    phys = FALSE) {
 
   ## We do not have data on participants below 18 so need to have lower limit
   ## Of 18 to do the inputed and have a symmetric matrix
