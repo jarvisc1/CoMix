@@ -13,7 +13,8 @@ create_scaling_matrices(
   age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
   age_limits_sym = c(18, 30, 40, 50, 60, 70),
   observed = FALSE,
-  phys = FALSE
+  phys = FALSE,
+  ...
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ create_scaling_matrices(
 \item{observed}{Logical parameter, defaulted to FALSE, for saving the observed contact matrices function.}
 
 \item{phys}{Logical parameter, defaulted to false, if true then only physical contacts are returned.}
+
+\item{...}{passed onto `create_cm`phys Logical parameter, defaulted to false, if true then only physical contacts are returned.}
 
 \item{split2}{Logical parameter, defaulted to FALSE, for splitting the second matrix.}
 }

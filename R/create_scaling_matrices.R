@@ -10,6 +10,7 @@
 #' @param split2 Logical parameter, defaulted to FALSE, for splitting the second matrix.
 #' @param observed Logical parameter, defaulted to FALSE, for saving the observed contact matrices function.
 #' @param phys Logical parameter, defaulted to false, if true then only physical contacts are returned.
+#' @param ... passed onto `create_cm`phys Logical parameter, defaulted to false, if true then only physical contacts are returned.
 #' @export
 #' @export
 #'
@@ -18,7 +19,8 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
                                     age_limits_sym = c(18, 30, 40, 50, 60, 70),
                                     observed = FALSE,
-                                    phys = FALSE) {
+                                    phys = FALSE,
+                                    ...) {
 
   ## We do not have data on participants below 18 so need to have lower limit
   ## Of 18 to do the inputed and have a symmetric matrix
@@ -75,13 +77,13 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
 
   for (i in 1:length(filter_comix)){
 
-    assign(comix_names[[i]], cm_filter(survey = comix_survey, age_limits = age_limits_sym,
+    assign(comix_names[[i]], create_cm(survey = comix_survey, age_limits = age_limits_sym,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_comix[[i]])
+                                    filter_text = filter_comix[[i]], ...)
     )
-    assign(polymod_names[[i]], cm_filter(survey = polymod_survey, age_limits = age_limits,
+    assign(polymod_names[[i]], create_cm(survey = polymod_survey, age_limits = age_limits,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_polymod[[i]])
+                                    filter_text = filter_polymod[[i]], ...)
     )
   }
 
