@@ -67,6 +67,11 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                       "comix_cm_work",
                       "comix_cm_other"
                       )
+  polmod_names <- list("polymod_cm_school",
+                       "polymod_cm_home",
+                       "polymod_cm_work",
+                       "polymod_cm_other"
+                      )
 
   for (i in 1:length(filter_comix)){
 
