@@ -83,7 +83,8 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
     )
     assign(polymod_names[[i]], create_cm(survey = polymod_survey, age_limits = age_limits,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_polymod[[i]], ...)
+                                    filter_text = filter_polymod[[i]], weigh.dayofweek = TRUE,
+                                    ...)
     )
   }
 

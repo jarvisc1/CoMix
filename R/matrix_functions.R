@@ -10,7 +10,7 @@
 #' @export
 #'
 
-split_cm <- function(mat, i = 0, row = 3:8, col = 3:8, ...){
+split_cm <- function(mat, i = 0, row = 4:9, col = 4:9, ...){
   if(i == 0 ){
     mat[row,col]
   } else {
@@ -67,7 +67,7 @@ max_eigen_ratio <- function(x, y){
 #' @export
 #'
 
-scale_factor <- function(mat1, mat2, split1 = FALSE, split2 = FALSE, ... ){
+scale_factor <- function(mat1, mat2, split1 = TRUE, split2 = TRUE, ... ){
 
   if (split1){
     x1 <- split_cm(mat1, ...)

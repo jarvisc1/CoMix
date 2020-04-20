@@ -4,7 +4,7 @@
 \alias{split_cm}
 \title{Splits a matrix by rows and columns}
 \usage{
-split_cm(mat, i = 0, row = 3:8, col = 3:8, ...)
+split_cm(mat, i = 0, row = 4:9, col = 4:9, ...)
 }
 \arguments{
 \item{mat}{matrix}

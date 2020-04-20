@@ -4,7 +4,7 @@
 \alias{scale_factor}
 \title{Scale by eigenvalue ratio}
 \usage{
-scale_factor(mat1, mat2, split1 = FALSE, split2 = FALSE, ...)
+scale_factor(mat1, mat2, split1 = TRUE, split2 = TRUE, ...)
 }
 \arguments{
 \item{mat1}{Matrix}
