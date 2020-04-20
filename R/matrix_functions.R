@@ -109,7 +109,7 @@ scale_matrix <- function(scale_matrix, missing_matrix, i = 0, ...){
   }
 
 
-  full_matrix * scale_factor(scale_matrix, missing_matrix, i = 0, ...)
+  full_matrix * scale_factor(missing_matrix, scale_matrix, i = i, ...)
 
 }
 
