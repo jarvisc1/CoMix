@@ -36,7 +36,27 @@ structure (refer to `inst/scripts/000_run_all.R`)
 samples, which can be changed in `aaa_create_contact_matrices`
 
 
-# Outputs
+# Outputs by script
+
+Contact matrices
+
+* aaa_create_contact_matrices.R
+    * comix_survey.rds
+    * polymod_survey.rds
+    * comix_cm.rds
+    * polymod_cm.rds
+    * comix_cms.RData
+    * comix_phys_cms.RData
+    * boots_cms.RData
+    * boots_phys_cms.RData
+* aaa_scale_contact_matrices.R
+    * comix_cm_imputed.rds
+    
+    
+
+Summaries
+
+Online versions
 
 
 
