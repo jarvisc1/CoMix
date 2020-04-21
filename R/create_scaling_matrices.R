@@ -22,19 +22,23 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     phys = FALSE,
                                     ...) {
 
-  ## We do not have data on participants below 18 so need to have lower limit
-  ## Of 18 to do the inputed and have a symmetric matrix
-  comix_cm <- create_cm(comix_survey, age_limits = age_limits,
-                        symmetric = FALSE, boots = nboots
-                        )
-  polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
-                          symmetric = TRUE, boots = nboots)
-
-
   ## Create location specific contact matrices
   ## Use age_limits_sym for COMIX matrices to match POLYMOD dimensions
 
   if(phys){
+
+    ## We do not have data on participants below 18 so need to have lower limit
+    ## Of 18 to do the inputed and have a symmetric matrix
+    comix_cm <- create_cm(comix_survey, age_limits = age_limits,
+                          symmetric = FALSE, boots = nboots,
+                          filter = list(phys = 1)
+    )
+    polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
+                            symmetric = TRUE, boots = nboots,
+                            filter = list(phys = 2)
+    )
+
+
     filter_comix <- list(list(phys_contact = 1, cnt_school = "Yes"),
                          list(phys_contact = 1, cnt_home = "Yes"),
                          list(phys_contact = 1, cnt_work = "Yes"),
@@ -49,6 +53,12 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                 cnt_school = 0,
                                 cnt_home = 0))
   } else{
+    comix_cm <- create_cm(comix_survey, age_limits = age_limits,
+                          symmetric = FALSE, boots = nboots
+    )
+    polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
+                            symmetric = TRUE, boots = nboots
+    )
    filter_comix <- list(list(cnt_school = "Yes"),
                         list(cnt_home = "Yes"),
                         list(cnt_work = "Yes"),
