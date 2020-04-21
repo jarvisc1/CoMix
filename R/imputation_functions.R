@@ -111,7 +111,7 @@ impute_cm <- function(
   imputed_values <- impute_values(i = i, ... )[impute_rows, impute_cols]
   update_mat[impute_rows, impute_cols] <- imputed_values
 
-  symm_mat(update_mat)
+  update_mat <- symm_mat(update_mat)
   update_mat
 }
 
