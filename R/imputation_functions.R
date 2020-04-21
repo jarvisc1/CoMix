@@ -93,7 +93,7 @@ impute_cm <- function(
   ...
 ){
   if(i > 0 ){
-    comix <- comid[[i]]$matrix
+    comix <- comix[[i]]$matrix
     polymod <- polymod[[i]]$matrix
   }
 
@@ -102,7 +102,7 @@ impute_cm <- function(
   colnames(update_mat)  <- colnames(comix)
 
   if(reciprocol){
-    update_mat[impute_cols, observed_rows] <-  t(comix_cm)[impute_cols, observed_rows]
+    update_mat[impute_cols, observed_rows] <-  t(comix)[impute_cols, observed_rows]
   }
 
   non_imputed_values <- comix[observed_rows, observed_cols]
@@ -111,7 +111,7 @@ impute_cm <- function(
   imputed_values <- impute_values(i = i, ... )[impute_rows, impute_cols]
   update_mat[impute_rows, impute_cols] <- imputed_values
 
-  #symm_mat(update_mat)
+  symm_mat(update_mat)
   update_mat
 }
 
