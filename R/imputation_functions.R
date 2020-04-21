@@ -118,11 +118,3 @@ impute_cm <- function(
 
 
 
-
-
-#' Will add documentation
-#' @export
-scale_list <- function(mat_list, row = 2, col = 2, scale = 0.5) {
-  mat_list$matrix[row, col] <- mat_list$matrix[row, col]*scale
-  mat_list
-}
