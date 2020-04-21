@@ -16,6 +16,25 @@ impute_cm(
   ...
 )
 }
+\arguments{
+\item{comix}{comix matrix which might need to be split}
+
+\item{polymod}{polymod matrix}
+
+\item{i}{default as 0 for when single matrices}
+
+\item{impute_rows}{rows to impute}
+
+\item{impute_cols}{cols to impute}
+
+\item{observed_rows}{rows that are observed}
+
+\item{observed_cols}{cols that are observed}
+
+\item{reciprocol}{whether to impute based on the reciprocal nature of the matrix}
+
+\item{...}{passed to impute values probably need split2 = TRUE}
+}
 \description{
 Impute Comix matrix based on Polymod
 }

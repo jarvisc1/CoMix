@@ -4,7 +4,7 @@
 \alias{scale_factor}
 \title{Scale by eigenvalue ratio}
 \usage{
-scale_factor(mat1, mat2, split1 = FALSE, split2 = TRUE, ...)
+scale_factor(mat1, mat2, split1 = FALSE, split2 = FALSE, ...)
 }
 \arguments{
 \item{mat1}{Matrix}
@@ -13,7 +13,7 @@ scale_factor(mat1, mat2, split1 = FALSE, split2 = TRUE, ...)
 
 \item{split1}{Logical default FALSE whether to split the first matrix}
 
-\item{split2}{Logical default TRUE whether to split the second matrix}
+\item{split2}{Logical default FALSE whether to split the second matrix}
 }
 \description{
 Take two matrices split them if required to be of the same size and square

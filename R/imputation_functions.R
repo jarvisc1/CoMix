@@ -69,15 +69,15 @@ impute_values <- function(i = 0,
 
 #' Impute Comix matrix based on Polymod
 #'
-#' @param comix
-#' @param polymod
-#' @param i
-#' @param impute_rows
-#' @param impute_cols
-#' @param observed_rows
-#' @param observed_rows
-#' @param observed_cols
-#' @param reciprocol
+#' @param comix comix matrix which might need to be split
+#' @param polymod polymod matrix
+#' @param i default as 0 for when single matrices
+#' @param impute_rows rows to impute
+#' @param impute_cols cols to impute
+#' @param observed_rows rows that are observed
+#' @param observed_cols cols that are observed
+#' @param reciprocol whether to impute based on the reciprocal nature of the matrix
+#' @param ... passed to impute values probably need split2 = TRUE
 #' @export
 #'
 #'
