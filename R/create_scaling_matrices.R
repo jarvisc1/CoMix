@@ -31,11 +31,11 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
     ## Of 18 to do the inputed and have a symmetric matrix
     comix_cm <- create_cm(comix_survey, age_limits = age_limits,
                           symmetric = FALSE, boots = nboots,
-                          filter = list(phys = 1)
+                          filter = list(phys_contact = 1)
     )
     polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
                             symmetric = TRUE, boots = nboots,
-                            filter = list(phys = 2)
+                            filter = list(phys_contact = 2)
     )
 
 
