@@ -15,6 +15,9 @@
 #'
 create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     matrices_path, file_name,
+                                    countries,
+                                    estimated.contact.age = "mean",
+                                    survey.pop = NULL,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
                                     age_limits_sym = c(18, 30, 40, 50, 60, 70),
                                     observed = FALSE,
