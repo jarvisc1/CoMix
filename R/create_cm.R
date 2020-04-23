@@ -17,8 +17,6 @@
 #'
 #' @export
 
-
-
 ### Create a contact matrix with filters
 
 ## Put filter = TRUE
@@ -26,8 +24,11 @@
 
 create_cm <- function(
   survey,
-  countries = "United Kingdom",
   age_limits,
+  countries = NULL,
+  # mean is the default for socialmixr::contact_matrix
+  estimated.contact.age = "mean",
+  survey.pop = NULL,
   symmetric = FALSE,
   filter_text = list(),
   boots = 1,
@@ -40,6 +41,9 @@ create_cm <- function(
     age.limits = age_limits,
     symmetric = symmetric,
     filter = filter_text,
+    estimated.contact.age = estimated.contact.age,
+    survey.pop = survey.pop,
+    countries = countries,
     n = boots,
     ...
   )

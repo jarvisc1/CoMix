@@ -15,7 +15,7 @@
 #'
 create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     matrices_path, file_name,
-                                    countries,
+                                    countries = NULL,
                                     estimated.contact.age = "mean",
                                     survey.pop = NULL,
                                     age_limits = c(0, 5, 18, 30, 40, 50, 60, 70),
@@ -33,11 +33,15 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
     ## Of 18 to do the inputed and have a symmetric matrix
     comix_cm <- create_cm(comix_survey, age_limits = age_limits,
                           symmetric = FALSE, boots = nboots,
-                          filter_text = list(phys_contact = 1), ...
+                          filter_text = list(phys_contact = 1),
+                          estimated.contact.age = estimated.contact.age,
+                          survey.pop = survey.pop, countries = countries, ...
     )
     polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
                             symmetric = TRUE, boots = nboots,
-                            filter_text = list(phys_contact = 2), ...
+                            filter_text = list(phys_contact = 2),
+                            estimated.contact.age = estimated.contact.age,
+                            survey.pop = survey.pop, countries = countries, ...
     )
 
 
@@ -56,10 +60,14 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                 cnt_home = 0))
   } else{
     comix_cm <- create_cm(comix_survey, age_limits = age_limits,
-                          symmetric = FALSE, boots = nboots, ...
+                          symmetric = FALSE, boots = nboots,
+                          estimated.contact.age = estimated.contact.age,
+                          survey.pop = survey.pop, countries = countries, ...
     )
     polymod_cm <- create_cm(polymod_survey,  age_limits = age_limits,
-                            symmetric = TRUE, boots = nboots, ...
+                            symmetric = TRUE, boots = nboots,
+                            estimated.contact.age = estimated.contact.age,
+                            survey.pop = survey.pop, countries = countries, ...
     )
    filter_comix <- list(list(cnt_school = "Yes"),
                         list(cnt_home = "Yes"),
@@ -91,12 +99,16 @@ create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
 
     assign(comix_names[[i]], create_cm(survey = comix_survey, age_limits = age_limits_sym,
                                     symmetric = TRUE, boots = nboots ,
-                                    filter_text = filter_comix[[i]], ...)
+                                    filter_text = filter_comix[[i]],
+                                    estimated.contact.age = estimated.contact.age,
+                                    survey.pop = survey.pop, countries = countries, ...)
     )
     assign(polymod_names[[i]], create_cm(survey = polymod_survey, age_limits = age_limits,
                                     symmetric = TRUE, boots = nboots ,
                                     filter_text = filter_polymod[[i]], weigh.dayofweek = TRUE,
-                                    ...)
+                                    estimated.contact.age = estimated.contact.age,
+                                    survey.pop = survey.pop, countries = countries, ...
+                                  )
     )
   }
 
