@@ -10,7 +10,7 @@
 #' @param school ogical default FALSE to include school for imputation
 #' @param home logical default TRUE to include home for imputation
 #'
-#'
+#' @export
 #'
 #'
 

@@ -12,7 +12,6 @@
 #' @param phys Logical parameter, defaulted to false, if true then only physical contacts are returned.
 #' @param ... passed onto `create_cm`phys Logical parameter, defaulted to false, if true then only physical contacts are returned.
 #' @export
-#' @export
 #'
 create_scaling_matrices <- function(comix_survey, polymod_survey, nboots,
                                     matrices_path, file_name,
